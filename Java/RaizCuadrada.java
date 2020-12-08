@@ -21,10 +21,7 @@ public class RaizCuadrada {
     static BiFunction<Integer, Double, Double> mejorar = (n, x) -> x - f.apply(x, n) / dx.apply(x) ;
 
     // Función que contiene la lógica para mejorar la solución
-    static BiFunction<Integer, Double, Double> calcular  = null;
-    static {
-        calcular = (n, x) -> suficiente.apply(n, x) ? x : calcular.apply(n, mejorar.apply(n, x)) ;
-    }
+    static BiFunction<Integer, Double, Double> calcular = (n, x) -> suficiente.apply(n, x) ? x : RaizCuadrada.calcular.apply(n, mejorar.apply(n, x)) ;
 
     // Función principal, raíz cuadrada con el método de aproxmaciones sucesivas Newton-Raphson
     static Function<Integer, Double> raiz_cuadrada = (n) -> calcular.apply(n, 1.0);
